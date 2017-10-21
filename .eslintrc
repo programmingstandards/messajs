@@ -1,0 +1,13 @@
+{
+    "parser": "babel-eslint",
+    "env": {
+        "jest": true,
+        "node": true
+    },
+    "rules": {
+      "strict": 0,
+      "semi": 2,
+      "no-undef": 2,
+      "no-unused-vars": 1
+    }
+}

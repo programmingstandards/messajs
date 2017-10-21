@@ -1,0 +1,20 @@
+{
+  "name": "messajs",
+  "version": "0",
+  "description": "A javascript utility to manage messages",
+  "main": "index.js",
+  "scripts": {
+    "test-prev-config": "BABEL_ENV=testing jest --watch",
+    "test": "SET BABEL_ENV=testing && jest --watch"
+  },
+  "author": "Samu Joseph",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "babel-jest": "^21.2.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.9.0",
+    "jest-cli": "^21.2.1",
+    "@types/jest": "^21.1.4"
+  }
+}
