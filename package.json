@@ -1,20 +1,27 @@
 {
   "name": "messajs",
-  "version": "0",
+  "version": "0.0.1",
   "description": "A javascript utility to manage messages",
-  "main": "index.js",
+  "main": "dist/messajs.js",
+  "module": "dist/messajs.esm.js",
+  "browser": "dist/messajs.umd.js",
   "scripts": {
-    "test-prev-config": "BABEL_ENV=testing jest --watch",
-    "test": "SET BABEL_ENV=testing && jest --watch"
-  },
+    "test": "cross-env BABEL_ENV=testing && jest --watch",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "pretest": "npm run build"    
+    },
   "author": "Samu Joseph",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^21.1.4",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
     "babel-preset-env": "^1.6.0",
+    "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "jest-cli": "^21.2.1",
-    "@types/jest": "^21.1.4"
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2"
   }
 }

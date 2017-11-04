@@ -132,7 +132,7 @@ export const createMessages = (messageFields) => {
         }
     };
     return {
-        hasMessageKeys,
+        hasMessageKeys, 
         addMessageKeys,
         deleteMessageKeys,
         getMessageKeys,        
