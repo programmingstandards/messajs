@@ -6,22 +6,28 @@
   "module": "dist/messajs.esm.js",
   "browser": "dist/messajs.umd.js",
   "scripts": {
-    "test": "cross-env BABEL_ENV=testing && jest --watch",
-    "build": "rollup -c",
-    "dev": "rollup -c -w",
-    "pretest": "npm run build"    
-    },
+    "test": "cross-env NODE_ENV=testing BABEL_ENV=testing && jest --watch",
+    "build": "cross-env NODE_ENV=production BABEL_ENV=production && rollup -c",
+    "dev": "cross-env NODE_ENV=development BABEL_ENV=development && rollup -c -w",
+    "pretest": "npm run build"
+  },
   "author": "Samu Joseph",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^21.1.4",
     "babel-eslint": "^8.0.1",
     "babel-jest": "^21.2.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "cross-env": "^5.1.0",
     "eslint": "^4.9.0",
     "jest-cli": "^21.2.1",
     "rollup": "^0.50.0",
-    "rollup-plugin-babel": "^3.0.2"
-  }
+    "rollup-plugin-babel": "^3.0.2",
+    "rollup-plugin-commonjs": "^8.2.6",
+    "rollup-plugin-node-resolve": "^3.0.0"
+  },
+  "files": [
+    "dist"
+  ]
 }

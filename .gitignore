@@ -1,4 +1,10 @@
 #
+# Application specific files and directories
+# ------------------------------------------
+
+dist/
+
+#
 # Node files
 # ----------
 

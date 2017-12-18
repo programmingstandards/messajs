@@ -1,4 +1,4 @@
-import { createMessages  } from "../../src/lib/createMessages";
+import { createMessages } from "../../src/index";
 
 describe('createMessages([...keys]) tests just after initialization', () => {
     let messages;

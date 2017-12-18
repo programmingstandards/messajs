@@ -1,5 +1,5 @@
 {
-  "plugins": [],
+  "plugins": ["transform-object-rest-spread"],
   "presets": [
     [
       "env",
@@ -8,6 +8,7 @@
           "node": "6.10",
           "browsers": ["Firefox > 20", "chrome > 30"]
         }
+        // "modules": false
       }
     ]
   ]

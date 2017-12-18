@@ -1,4 +1,4 @@
-import { createMessages } from './lib/createMessages';
+import { createMessages } from './createMessages.js';
 
 export {
     createMessages,
