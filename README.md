@@ -64,12 +64,12 @@ getMessageKeysCount();
 hasMessageKeys();
 ```
 
-### Check whether a single message key exists
+### Check if a specific message key exists
 ```
 hasMessageKeys('info');
 ```
 
-### Check whether at least one of the message keys in the list exists
+### Check whether at least one of the message keys in a list exists
 ```
 hasMessageKeys(['info', 'warning']);
 ```
@@ -79,7 +79,7 @@ hasMessageKeys(['info', 'warning'], false);
 ```
 The default value of second parameter is false.
 
-### Check whether all of the message keys provided exists
+### Check whether all of the message keys in a list exists
 ```
 hasMessageKeys(['info', 'warning'], true);
 ```
@@ -97,7 +97,7 @@ OR
 hasMessages(false);
 ```
 
-### Check if at least one message exists all the existing message keys
+### Check if at least one message exists for all the existing message keys
 ```
 hasMessages(true);
 ```
@@ -123,3 +123,72 @@ hasMessages(['info', 'warning'], false);
 ```
 hasMessages(['info', 'warning'], true);
 ```
+
+## Push messages to messajs object
+
+**NOTE:** If any one or more of the message keys provided while pushing messages doesn't already exist, they will be automatically created and the messages will be added. If the key already exists, the messages will be added along with the already existing ones.
+
+### Add a single message
+
+```
+pushMessages('warning', 'message', 'message code');
+```
+
+### Add multiple messages
+
+```
+pushMessages({
+    'success': [{
+        message: "test success message 1", 
+        messageCode: "messageCode1",
+    }, {
+        message: "test success message 2", 
+        messageCode: "messageCode3",
+    }], 
+    'warnings': [{
+        message: "test warning message",
+        messageCode: "messageCode2",
+    }], 
+});
+```
+
+## Get messages
+
+### Get all the messages
+```
+getMessages();
+```
+
+### Get all the messages for a specific message key
+```
+getMessages('info');
+```
+
+### Get all the messages for a specific message key
+```
+getMessages('info');
+```
+
+### Get all the messages for a list of message keys
+```
+getMessages(['info', 'warning']);
+```
+
+## Get messages count
+
+### Get all the messages count
+```
+getMessagesCount();
+```
+
+### Get the messages count for a specific message key
+```
+getMessagesCount('info');
+```
+
+### Get the messages count for a list of message keys
+```
+getMessagesCount(['info', 'warnings']);
+```
+
+
