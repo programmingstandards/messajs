@@ -1,15 +1,27 @@
 export const createMessages = (messageFields) => {
+
+    /* If no argument is supplied, initialize messages as an empty object. */
     let messages = {};
+
+    /* Initialize messages with the object passed as messageFields - keys and messages*/
     if(messageFields.constructor === Object) {
         messages = {...messageFields};
-    } else if(Array.isArray(messageFields)) {
+    }
+
+    /* 
+        Initialize messages as object having keys passed in messageFields 
+        array and each key value as an empty array
+    */ 
+    else if(Array.isArray(messageFields)) {
         messages = messageFields.reduce((prev, messageField) => {
             prev[messageField] = [];
             return prev;
         }, {});
     }
 
+    /* add message keys and returns the messages object */
     function addMessageKeys(messageKeys) {
+        /* If argument is an array of keys, add keys and initilize them as empty objects. */
         if(Array.isArray(messageKeys)) { 
             messageKeys.forEach((messageKey)=>{
                 if(!hasMessageKeys(messageKey)){
@@ -17,6 +29,7 @@ export const createMessages = (messageFields) => {
                 }
             });
         }
+        /* Add a single key and initialize as empty array */
         else {
             messages[messageKeys] = [];
         }
@@ -24,7 +37,9 @@ export const createMessages = (messageFields) => {
         return getMessageObject();
     }
 
+    /* delete message keys and returns the messages object */    
     function deleteMessageKeys(messageKeys) {
+        /* deletes a list of message keys and associated messages */
         if(Array.isArray(messageKeys)) { 
             messageKeys.forEach((messageKey)=>{
                 if(!hasMessageKeys(messageKey)){
@@ -32,6 +47,7 @@ export const createMessages = (messageFields) => {
                 }
             });
         }
+        /* deletes one single message key and associated messages */
         else {
             delete messages[messageKeys];
         }
@@ -39,31 +55,47 @@ export const createMessages = (messageFields) => {
         return getMessageObject();
     }
 
-    const getMessageKeys = () => Object.keys(messages);
+    /* returns the message keys as an array */
+    function getMessageKeys() {
+        return Object.keys(messages);
+    }
 
-    const getMessageKeysCount = () => getMessageKeys().length;
+    /* returns the number of message keys */
+    function getMessageKeysCount (){
+        return getMessageKeys().length;
+    };
     
+    /* returns boolean, whether message keys are present */
     function hasMessageKeys (keys, every=true) {
-        switch(arguments.length) {
-            case 0:
-                return getMessageKeysCount() > 0;
-            case 1:
-            case 2:
-                if(Array.isArray(keys)) {
-                    const iterate = every ? 'every' : 'some';
-                    return keys[iterate]((key) => hasMessageKeys(key));
-                }
-                return getMessageKeys().includes(keys);
-            default: 
-                break;
+        if (arguments.length) {
+            /* 
+                if an array of message keys are provided, 
+                returns if all/some of them are present based on second param
+            */                
+            if(Array.isArray(keys)) {
+                const iterate = every ? 'every' : 'some';
+                return keys[iterate]((key) => hasMessageKeys(key));
+            }
+            
+            /* returns if the single message key provided exists */
+            return getMessageKeys().includes(keys);    
+        } else {
+            /* if no arguments are provided, returns if there is at least one message key */
+            return getMessageKeysCount() > 0;
         }
-        return false;
     } 
 
-    const getMessages = messageType => {
+    /* returns list of messages */
+    function getMessages(messageType) {
+        /* 
+            If no argument provided, returns all messages as key values of message keys.
+            If message type is provided, an array of messages is returned, 
+            for that specific message type.
+         */
         return messageType ? (messages[messageType] || []) : messages;
-    };
+    }
 
+    /* returns count of messages */    
     function getMessagesCount(messageKeys) {
         const args = arguments;
         
@@ -80,11 +112,12 @@ export const createMessages = (messageFields) => {
             return getMessages(messageKeys).length;    
         }
 
-        /* returns the total number of messages, irrespective of message keys*/       
+        /* returns the total number of messages, irrespective of message keys */       
         return getMessageKeys()
         .reduce((prev, messageKey) => prev + getMessagesCount(messageKey), 0);
     }
 
+    /* returns boolean, whether messages exist */
     function hasMessages(messageKeys, every = false) {
         const args = arguments;
         if(args.length) {
@@ -105,7 +138,8 @@ export const createMessages = (messageFields) => {
         return getMessageKeys().some(messageKey => getMessagesCount(messageKey) > 0);
     }
 
-   function deleteMessages(){
+    /* deletes messages and returns the messages object */
+    function deleteMessages(){
         const args = arguments;
         if(args.length){
             // call example - deleteMessages({'errors': [0, 1, 3], 'warnings': [3]})
@@ -116,7 +150,7 @@ export const createMessages = (messageFields) => {
                     messages[messageKey] = messages[messageKey]
                     .filter((val, index) => !MessagesToDelete[messageKey].includes(index));
                 });
-                return;
+                return getMessageObject();
             }
         }
         //Reset all message keys' values to empty arrays if no arguments are provided
