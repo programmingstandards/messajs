@@ -191,4 +191,79 @@ getMessagesCount('info');
 getMessagesCount(['info', 'warnings']);
 ```
 
+## Reset messages
 
+**NOTE:** Resetting all the messages for a message key still retains the message key and its value as an empty array.
+If the message key itself needs to be removed, use ___deleteMessageKeys()___ instead.
+
+### Reset all messages
+```
+resetMessages();
+```
+
+### Reset messages for a specific key
+```
+resetMessages('info');
+```
+
+### Reset messages for all keys except a specific key
+```
+resetMessages('info', false);
+```
+
+### Reset messages for a specific list of keys
+```
+resetMessages(['info', 'warning']);
+```
+
+### Reset messages for all keys except a list of keys
+```
+resetMessages(['info', 'warning'], false);
+```
+
+## Delete messages
+
+### Delete a message from a message key
+```
+deleteMessages(<message_key>, <message_index>);
+```
+
+### Delete multiple messages from a message key
+```
+deleteMessages(<message_key>, [<message_index>]);
+```
+
+### Delete multiple messages from multiple message keys
+```
+deleteMessages({ <message_key>: [<message_index>] });
+```
+```
+deleteMessages({ info: [1, 2], warning: [0, 4] });
+```
+
+
+
+
+## Filter out / delete messages based on message code
+
+### Filter out messages with a specific message code from all keys 
+
+```
+filterByMessageCode(<MESSAGE_CODE>);
+```
+### Filter out messages except a specific message code from all keys 
+
+```
+filterByMessageCode(<MESSAGE_CODE>, true);
+```
+
+### Filter out messages with a specific message code from a specific key
+
+```
+filterByMessageCode(<message_code>, <message_key>);
+```
+### Filter out messages without a specific message code from a specific key
+
+```
+filterByMessageCode(<message_code>, <message_key>, true);
+```
